@@ -1,0 +1,5 @@
+
+> neon-portfolio@1.0.0 build
+> vite build
+
+Terminate batch job (Y/N)? Terminate batch job (Y/N)? 
