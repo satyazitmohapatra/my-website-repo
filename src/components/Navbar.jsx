@@ -13,6 +13,7 @@ const navItems = [
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [pendingHref, setPendingHref] = useState('');
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -47,10 +48,27 @@ const Navbar = () => {
     if (href.startsWith('#')) window.history.replaceState(null, '', href);
   };
 
+  useEffect(() => {
+    if (!pendingHref || mobileOpen) return;
+
+    const timer = window.setTimeout(() => {
+      scrollToSection(pendingHref);
+      setPendingHref('');
+    }, 120);
+
+    return () => window.clearTimeout(timer);
+  }, [pendingHref, mobileOpen]);
+
   const handleNavClick = (event, href) => {
     event.preventDefault();
+
+    if (window.innerWidth < 768) {
+      setPendingHref(href);
+      setMobileOpen(false);
+      return;
+    }
+
     scrollToSection(href);
-    setMobileOpen(false);
   };
 
   return (
