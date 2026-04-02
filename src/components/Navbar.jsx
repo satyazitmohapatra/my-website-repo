@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 
 const navItems = [
@@ -20,6 +20,39 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    document.body.style.overflow = mobileOpen ? 'hidden' : '';
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [mobileOpen]);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 768) setMobileOpen(false);
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const scrollToSection = (href) => {
+    const target = document.querySelector(href);
+    if (!target) return;
+
+    const headerOffset = 90;
+    const elementTop = target.getBoundingClientRect().top + window.scrollY;
+    const scrollTop = elementTop - headerOffset;
+
+    window.scrollTo({ top: scrollTop, behavior: 'smooth' });
+    if (href.startsWith('#')) window.history.replaceState(null, '', href);
+  };
+
+  const handleNavClick = (event, href) => {
+    event.preventDefault();
+    scrollToSection(href);
+    setMobileOpen(false);
+  };
+
   return (
     <motion.header
       initial={{ y: -100, opacity: 0 }}
@@ -30,7 +63,11 @@ const Navbar = () => {
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-        <a href="#hero" className="flex items-center space-x-2.5 group">
+        <a
+          href="#hero"
+          onClick={(e) => handleNavClick(e, '#hero')}
+          className="flex items-center space-x-2.5 group"
+        >
           <svg width="28" height="28" viewBox="0 0 48 48" fill="none" className="transition-transform group-hover:scale-110">
             <path d="M24 4L4 44h12l8-16 8 16h12L24 4z" fill="#3b82f6" />
           </svg>
@@ -42,6 +79,7 @@ const Navbar = () => {
             <motion.a
               key={item.label}
               href={item.href}
+              onClick={(e) => handleNavClick(e, item.href)}
               className="text-sm font-medium transition-colors duration-300 text-white/50 hover:text-white"
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
@@ -52,21 +90,42 @@ const Navbar = () => {
           ))}
         </nav>
 
-        <a href="#contact" className="hidden md:inline-flex px-5 py-2 text-sm font-medium rounded-full bg-white text-black hover:bg-gray-200 transition-all duration-300">
+        <a
+          href="#contact"
+          onClick={(e) => handleNavClick(e, '#contact')}
+          className="hidden md:inline-flex px-5 py-2 text-sm font-medium rounded-full bg-white text-black hover:bg-gray-200 transition-all duration-300"
+        >
           Let’s Talk
         </a>
 
-        <button onClick={() => setMobileOpen(!mobileOpen)} className="md:hidden flex flex-col space-y-1.5 p-2">
+        <button
+          type="button"
+          aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
+          aria-expanded={mobileOpen}
+          onClick={() => setMobileOpen((prev) => !prev)}
+          className="md:hidden flex flex-col space-y-1.5 p-2 touch-manipulation"
+        >
           <motion.span animate={mobileOpen ? { rotate: 45, y: 6 } : { rotate: 0, y: 0 }} className="w-5 h-[1.5px] block bg-white/70" />
           <motion.span animate={mobileOpen ? { opacity: 0, x: -10 } : { opacity: 1, x: 0 }} className="w-5 h-[1.5px] block bg-white/70" />
           <motion.span animate={mobileOpen ? { rotate: -45, y: -6 } : { rotate: 0, y: 0 }} className="w-5 h-[1.5px] block bg-white/70" />
         </button>
       </div>
 
-      <motion.div initial={false} animate={mobileOpen ? { height: 'auto', opacity: 1 } : { height: 0, opacity: 0 }} className="md:hidden overflow-hidden bg-[#030305]/95 backdrop-blur-xl border-b border-white/[0.04]">
+      <motion.div
+        initial={false}
+        animate={mobileOpen ? { height: 'auto', opacity: 1 } : { height: 0, opacity: 0 }}
+        className={`md:hidden overflow-hidden bg-[#030305]/95 backdrop-blur-xl border-b border-white/[0.04] ${
+          mobileOpen ? 'pointer-events-auto' : 'pointer-events-none'
+        }`}
+      >
         <div className="px-6 py-6 flex flex-col space-y-3">
           {navItems.map((item) => (
-            <a key={item.label} href={item.href} onClick={() => setMobileOpen(false)} className="text-white/60 hover:text-white font-medium text-sm py-2 border-b border-white/[0.04]">
+            <a
+              key={item.label}
+              href={item.href}
+              onClick={(e) => handleNavClick(e, item.href)}
+              className="text-white/60 hover:text-white font-medium text-sm py-2 border-b border-white/[0.04] touch-manipulation"
+            >
               {item.label}
             </a>
           ))}

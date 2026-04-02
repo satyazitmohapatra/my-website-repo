@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
@@ -52,7 +52,7 @@ function App() {
                 <p className="text-white/25 text-xs tracking-wider">© {new Date().getFullYear()} Satyajit Mohapatra — ML Portfolio</p>
                 <div className="flex items-center space-x-4">
                   <a href="https://www.github.com" target="_blank" rel="noreferrer" className="text-white/25 hover:text-white/60 text-xs tracking-wider transition-colors">GitHub</a>
-                  <a href="https://www.linkedin.com/in/satyajit-mohapatra-48838a343" target="_blank" rel="noreferrer" className="text-white/25 hover:text-white/60 text-xs tracking-wider transition-colors">LinkedIn</a>                  <a href="https://www.linkedin.com/in/satyajit-mohapatra-48838a343" target="_blank" rel="noreferrer" className="text-white/25 hover:text-white/60 text-xs tracking-wider transition-colors">LinkedIn</a>                
+                  <a href="https://www.linkedin.com/in/satyajit-mohapatra-48838a343" target="_blank" rel="noreferrer" className="text-white/25 hover:text-white/60 text-xs tracking-wider transition-colors">LinkedIn</a>                
                 </div>
               </div>
             </footer>
@@ -64,3 +64,4 @@ function App() {
 }
 
 export default App;
+
