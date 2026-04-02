@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 
 const skillCategories = [
@@ -12,7 +12,26 @@ const skillCategories = [
     title: 'ML & Data Science',
     icon: '🧠',
     color: '#60a5fa',
-    skills: ['Pandas', 'NumPy', 'Scikit-Learn', 'Data Preprocessing', 'Model Evaluation', 'Regression', 'Classification'],
+    skills: ['Pandas', 'NumPy', 'Scikit-Learn', 'Data Preprocessing', 'Model Evaluation'],
+  },
+  {
+    title: 'Machine Learning Algorithms',
+    icon: '🤖',
+    color: '#8b5cf6',
+    groups: [
+      {
+        heading: '📊 Supervised Learning',
+        items: ['Linear & Logistic Regression', 'Gradient Descent', 'SVM', 'Naive Bayes', 'KNN', 'Decision Trees', 'Random Forest'],
+      },
+      {
+        heading: '🌲 Ensemble Learning',
+        items: ['Bagging', 'AdaBoost', 'Gradient Boosting', 'XGBoost'],
+      },
+      {
+        heading: '🔍 Unsupervised Learning',
+        items: ['K-Means Clustering', 'Hierarchical Clustering'],
+      },
+    ],
   },
   {
     title: 'Visualization & App Dev',
@@ -34,7 +53,10 @@ const Skills = () => {
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} viewport={{ once: true, margin: '-100px' }} className="text-center mb-16">
           <span className="inline-block px-4 py-1.5 rounded-full border border-white/[0.08] text-xs font-space text-white/40 tracking-widest uppercase mb-6">Skills & Tools</span>
-          <h2 className="text-4xl md:text-5xl font-outfit font-semibold text-white tracking-tight">My technology stack</h2>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-outfit font-semibold text-white leading-tight tracking-tight max-w-3xl mx-auto">
+            My technology
+            <span className="gradient-text"> stack</span>
+          </h2>
         </motion.div>
 
         <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
@@ -46,13 +68,30 @@ const Skills = () => {
                 </div>
                 <h3 className="text-lg font-outfit font-semibold text-white">{cat.title}</h3>
               </div>
-              <div className="flex flex-wrap gap-2">
-                {cat.skills.map(skill => (
-                  <span key={skill} className="px-3 py-1.5 text-xs font-medium rounded-lg border transition-all duration-300" style={{ borderColor: `${cat.color}30`, color: '#ffffff', backgroundColor: `${cat.color}10` }}>
-                    {skill}
-                  </span>
-                ))}
-              </div>
+              {cat.groups ? (
+                <div className="space-y-4">
+                  {cat.groups.map(group => (
+                    <div key={group.heading}>
+                      <h4 className="text-sm font-medium text-white/80 mb-2">{group.heading}</h4>
+                      <div className="flex flex-wrap gap-2">
+                        {group.items.map(item => (
+                          <span key={item} className="px-3 py-1.5 text-xs font-medium rounded-lg border transition-all duration-300" style={{ borderColor: `${cat.color}30`, color: '#ffffff', backgroundColor: `${cat.color}10` }}>
+                            {item}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <div className="flex flex-wrap gap-2">
+                  {cat.skills.map(skill => (
+                    <span key={skill} className="px-3 py-1.5 text-xs font-medium rounded-lg border transition-all duration-300" style={{ borderColor: `${cat.color}30`, color: '#ffffff', backgroundColor: `${cat.color}10` }}>
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              )}
             </motion.div>
           ))}
         </div>

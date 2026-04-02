@@ -24,8 +24,8 @@ const Hero = () => {
           <motion.span animate={{ opacity: [1, 0, 1] }} transition={{ repeat: Infinity, duration: 0.8, ease: 'linear' }} className="inline-block w-[3px] md:w-[5px] bg-white ml-2" style={{ height: '0.85em', verticalAlign: 'text-bottom' }} />
         </motion.h1>
 
-        <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.3 }} className="text-lg md:text-xl text-gray-400 max-w-2xl mb-10 leading-relaxed font-inter">
-          Aspiring Machine Learning Engineer pursuing B.Tech CSE (Data Science) at DRIEMS University. I build predictive ML models, EDA workflows, and data-driven Flask/Streamlit applications.
+        <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.3 }} className="text-lg md:text-xl text-gray-400 max-w-xs sm:max-w-sm md:max-w-md mb-10 leading-relaxed font-inter">
+          I am an aspiring MLOps Engineer pursuing B.Tech CSE (Data Science) at DRIEMS University and a kind of student who loves building stuff, also loves to learn new things.
         </motion.p>
 
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.4 }} className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">

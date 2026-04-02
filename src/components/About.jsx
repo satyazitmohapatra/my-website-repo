@@ -18,7 +18,7 @@ const About = () => {
             <div className="p-6">
               <h3 className="text-lg font-outfit font-semibold text-white mb-3">👋 Who I Am</h3>
               <p className="text-sm text-white/50 leading-relaxed">
-                I’m <span className="text-white/90">Satyajit Mohapatra</span>, an aspiring Machine Learning Engineer from Jajapur, India, currently pursuing B.Tech in CSE (Data Science) at DRIEMS University.
+                I’m <span className="text-white/90">Satyajit Mohapatra</span>, an aspiring Machine Learning Operations Engineer from Jajapur, India, currently pursuing B.Tech in CSE (Data Science) at DRIEMS University.
               </p>
               <p className="text-sm text-white/50 leading-relaxed mt-3">
                 My core work includes predictive modeling, exploratory data analysis, and integrating ML solutions into Flask and Streamlit web applications.

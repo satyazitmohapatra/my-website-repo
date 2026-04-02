@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 
 const timeline = [
@@ -31,7 +31,10 @@ const Experience = () => {
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} viewport={{ once: true }} className="text-center mb-16">
           <span className="inline-block px-4 py-1.5 rounded-full border border-white/[0.08] text-xs font-space text-white/40 tracking-widest uppercase mb-6">Education & Journey</span>
-          <h2 className="text-4xl md:text-5xl font-outfit font-semibold text-white tracking-tight">Academic trajectory</h2>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-outfit font-semibold text-white leading-tight tracking-tight max-w-3xl mx-auto">
+            Academic
+            <span className="gradient-text"> trajectory</span>
+          </h2>
         </motion.div>
 
         <div className="max-w-3xl mx-auto">
